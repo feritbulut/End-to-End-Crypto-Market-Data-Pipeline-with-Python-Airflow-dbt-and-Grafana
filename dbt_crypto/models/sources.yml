@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: crypto
+    database: crypto_dw
+    schema: public
+    tables:
+      - name: dim_coins
+      - name: fact_daily_prices

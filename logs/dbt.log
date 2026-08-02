@@ -1,0 +1,23 @@
+[0m14:54:33.210248 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C8A69642F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C8A9F49190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C8A7E1B1A0>]}
+
+
+============================== 14:54:33.215418 | 9e351463-7c89-4537-af64-dc08465cc145 ==============================
+[0m14:54:33.215418 [info ] [MainThread]: Running with dbt=1.11.12
+[0m14:54:33.215418 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Arif\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt init dbt_crypto --skip-profile-setup', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m14:54:33.238055 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\Arif\.dbt
+[0m14:54:33.240235 [info ] [MainThread]: A project called dbt_crypto already exists here.
+[0m14:54:33.240235 [debug] [MainThread]: Command `dbt init` succeeded at 14:54:33.240235 after 0.16 seconds
+[0m14:54:33.241235 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C8AA5C10A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C8AA5C3620>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C8AA655E80>]}
+[0m14:54:33.241235 [debug] [MainThread]: Flushing usage events
+[0m14:54:34.257244 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m14:56:01.615209 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002207084AB10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022073326840>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000220730370E0>]}
+
+
+============================== 14:56:01.619520 | f142727e-ae19-4575-b218-0cc78a079994 ==============================
+[0m14:56:01.619520 [info ] [MainThread]: Running with dbt=1.11.12
+[0m14:56:01.620521 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\Arif\\.dbt', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt init dbt_crypto', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m14:56:01.639710 [info ] [MainThread]: A project called dbt_crypto already exists here.
+[0m14:56:01.640711 [debug] [MainThread]: Command `dbt init` succeeded at 14:56:01.639710 after 0.14 seconds
+[0m14:56:01.640711 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002206FF4EBA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022073948A10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000220730370E0>]}
+[0m14:56:01.640711 [debug] [MainThread]: Flushing usage events
+[0m14:56:02.644564 [debug] [MainThread]: An error was encountered while trying to flush usage events

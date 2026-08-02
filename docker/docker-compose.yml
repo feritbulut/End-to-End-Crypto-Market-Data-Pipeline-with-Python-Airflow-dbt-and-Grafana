@@ -39,6 +39,44 @@ services:
       timeout: 5s
       retries: 5
 
+  airflow:
+    image: apache/airflow:2.7.3-python3.10
+    container_name: crypto_airflow
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://crypto_user:crypto_password_123@postgres:5432/crypto_dw
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin123
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=crypto_user
+      - POSTGRES_PASSWORD=crypto_password_123
+      - POSTGRES_DB=crypto_dw
+    volumes:
+      - ../airflow/dags:/opt/airflow/dags
+      - ../src:/opt/airflow/project/src
+      - ../requirements.txt:/opt/airflow/project/requirements.txt:ro
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "
+        pip install --no-cache-dir minio python-dotenv &&
+        airflow db migrate &&
+        (airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com || echo 'User already exists') &&
+        airflow standalone
+      "
+    networks:
+      - crypto_network
+
 volumes:
   minio_data:
   postgres_data:
