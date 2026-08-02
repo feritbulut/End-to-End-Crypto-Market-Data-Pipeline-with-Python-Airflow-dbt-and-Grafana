@@ -95,10 +95,31 @@ services:
     networks:
       - crypto_network
 
+
+  etl:
+    build:
+      context: .. # Kök dizin (Dockerfile'ın src'yi görebilmesi için)
+      dockerfile: docker/Dockerfile.etl
+    container_name: crypto_etl
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    env_file:
+      - ../.env # Kök dizindeki .env dosyasını oku
+    environment:
+      # Docker içindeki host isimleri (localhost değil!)
+      - MINIO_ENDPOINT=minio:9000
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    networks:
+      - crypto_network
+
 volumes:
   minio_data:
   postgres_data:
-  grafana_data: # Bunu volumes listesinin en altına ekle
+  grafana_data:
 
 networks:
   crypto_network:
