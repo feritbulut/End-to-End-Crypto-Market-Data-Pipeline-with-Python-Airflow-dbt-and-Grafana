@@ -51,6 +51,17 @@ def main():
     cleaner = DataCleaner()
     cleaned_df = cleaner.clean_coins_data(coins)
     logger.info(f"Data cleaned: {len(cleaned_df)} rows")
+
+    # 3. VALIDATE
+    from src.validate.data_validator import validate_cleaned_data
+    
+    is_valid = validate_cleaned_data(cleaned_df)
+
+    if not is_valid:
+        logger.error(" Pipeline aborted due to data quality issues. Data will NOT be loaded.")
+        sys.exit(1) 
+    
+    logger.info("Validation passed. Proceeding to load...")
     
     # 4. Load to Silver (Parquet) - MinIO
     silver_object_name = minio_loader.save_parquet_to_silver(
