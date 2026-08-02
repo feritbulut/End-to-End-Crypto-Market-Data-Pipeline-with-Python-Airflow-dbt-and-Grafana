@@ -77,9 +77,28 @@ services:
     networks:
       - crypto_network
 
+
+  grafana:
+    image: grafana/grafana:10.2.2
+    container_name: crypto_grafana
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - crypto_network
+
 volumes:
   minio_data:
   postgres_data:
+  grafana_data: # Bunu volumes listesinin en altına ekle
 
 networks:
   crypto_network:
