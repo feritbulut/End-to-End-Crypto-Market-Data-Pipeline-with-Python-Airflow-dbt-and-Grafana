@@ -21,15 +21,16 @@ def main():
 
     setup_logging()
     logger.info("Starting crypto data extraction...")
-    
-    extractor = CoinGeckoExtractor()
-    coins = extractor.get_top_coins(limit=10)
-    logger.info(f"Extracted {len(coins)} coins")
 
     from src.load.minio_loader import MinIOLoader
     minio_endpoint = os.getenv("MINIO_ENDPOINT", "localhost:9000")
     minio_user = os.getenv("MINIO_ROOT_USER", "minioadmin")
     minio_password = os.getenv("MINIO_ROOT_PASSWORD", "minioadmin123")
+    bucket_name = "crypto-raw-data"
+    
+    extractor = CoinGeckoExtractor()
+    coins = extractor.get_top_coins(limit=50)
+    logger.info(f"Extracted {len(coins)} coins")
 
     loader = MinIOLoader(
         endpoint=minio_endpoint,
@@ -38,13 +39,27 @@ def main():
         secure=False
     )
 
-    
-    loader.save_json_to_raw(
-        bucket_name="crypto-raw-data",
+    raw_object_name = loader.save_json_to_raw(
+        bucket_name=bucket_name,
         data=coins,
         prefix="coingecko"
     )
 
+    logger.info(f"Raw data saved: {raw_object_name}")
+    
+    from src.transform.cleaner import DataCleaner
+    cleaner = DataCleaner()
+    cleaned_df = cleaner.clean_coins_data(coins)
+    logger.info(f"Data cleaned: {len(cleaned_df)} rows")
+
+    silver_object_name = loader.save_parquet_to_silver(
+        bucket_name=bucket_name,
+        df=cleaned_df,
+        prefix="coingecko"
+    )
+
+    logger.info(f"Silver data saved: {silver_object_name}")
+    
     logger.info("Pipeline completed successfully!")
 
 if __name__ == "__main__":
