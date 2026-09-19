@@ -13,6 +13,8 @@ A production-ready, containerized data engineering pipeline that extracts real-t
 
 This project demonstrates a complete **ELT/ETL data pipeline** built with modern data engineering best practices. It ingests live cryptocurrency market data, applies data quality checks, and transforms raw data into analytics-ready tables for business intelligence.
 
+<img width="1226" height="686" alt="Ekran görüntüsü 2026-09-19 214418" src="https://github.com/user-attachments/assets/2125494f-cd91-435a-b6ae-dd6de35fb35f" />
+
 ### Key Features
 -  **Real-time Data Extraction** from CoinGecko API with retry mechanisms
 -  **Medallion Architecture** (Bronze → Silver → Gold layers)
